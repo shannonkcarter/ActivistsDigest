@@ -52,10 +52,12 @@ def activistsdigest():
         data1 = data.sort_values(by=['cosine_similarity'], ascending = False)
         data2 = data1.drop('vector_average', 1)
         data2 = data2.drop('cosine_similarity', 1)
+        data2['date'] = pd.to_datetime(data2['date'], format = '%Y-%m-%d')
+        data2["date"] = data2['date'].apply(lambda x: x.strftime('%B %d, %Y'))
         data2 = data2.rename(columns={"text": "Public Speaker Comment", "date": "Meeting Date"})
         # return df for top 10 rows
         #results = data1.head(10)
-        html_table = data2.head(10).to_html(index = False)
+        html_table = data2.head(15).to_html(index = False)
         #results = data1.head(10).to_html()
 
     # return print(results)
