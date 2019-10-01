@@ -15,12 +15,10 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="../static/album.css" rel="stylesheet">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link href="../static/style.css" rel="stylesheet">
 
 </head>
-
-
-
 
 <body>
 <header>
@@ -30,8 +28,7 @@
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white">About</h4>
                     <p class="text-muted">This application was created by Shannon Carter during the Insight Data Science fellowship
-                        in the fall of 2019. The goal is to provide a means for casual activists to search the entire record of City Council meetings.
-                        The app allows users to search the last 4 years of City Council meetings with a single query</p>
+                        in the fall of 2019. The goal is to provide a way for casual activists to search the entire record of City Council meetings.</p>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4 class="text-white">Contact</h4>
@@ -68,19 +65,55 @@
 	<h5 class="jumbotron-heading" align="center">Helping Austinites scan City Council meeting documentation</h5>
 	<br>
 
+<form action="/pitchidea" method="post">
+
 <div class="container text-center ">
-  <form action="/pitchidea" method="post">
     <!-- <form action="" method="post" novalidate> -->
+    <form action="/pitchidea" method="post">
       <div class="form-group">
             <label for="idea">Insert a topic of interest here:</label>
             <input type="text" class="form-control" id="idea" name="pitch" placeholder="e.g., 'bike infrastructure' or 'homeless care'"></div>
             <button type="submit" class="btn btn-success">Submit</button>
 	   </div>
-  </form>
+   </form>
+
+
+   <!-- 	CHRIS' TABLE -->
+   <div class="container-fluid" align="center">
+   <div class="col-md-10">
+   	<table class="table">
+   		<thead class="thead-light">
+   			<tr>
+   				<th scope="col">Meeting Date</th>
+   				<th scope="col">Public Speaker Comment</th>
+   			</tr>
+   		</thead>
+   		<tbody>
+   			<tr>
+
+   			</tr>
+
+   		</tbody>
+   	</table>
+   </div>
+   </div>
+   <!-- 	MY TABLE -->
+   <div class="container-fluid" align="center">
+     <div class="col-md-10">
+       <table class="table">
+         <thead class="thead-light">
+
+
+       <p>Here are some meeting comments related to {{text}}. Follow the link to meeting documentation for comments that are most relevant to your interests:</p>
+       <p>{{html_table|safe}}</p>
+     </div>
+
 </div>
 
 </body>
 
+
+</div>
 
 
 <!-- <footer class="text-muted">
