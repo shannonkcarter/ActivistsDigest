@@ -28,16 +28,19 @@ table {
     width: 100%;
   }
 
+th {
+    background-color: #4c8fa6;
+    color: white;
+}
 
-  td, th {
+td, th {
     border: 1px solid #616161;
     text-align: left;
     padding: 8px;
   }
 
-  tr:nth-child(even) {
-    background-color: #dddddd;
-}
+  tr:nth-child(odd)		{ background-color:#e3e3e3; }
+  tr:nth-child(even)	{ background-color:#fff; }
 
 tr:hover {
   background-color: #ffffc9;
@@ -55,9 +58,8 @@ tr:hover {
                 <div class="col-sm-8 col-md-7 py-4">
                     <h4 class="text-white">About</h4>
                     <p class="text-muted">This application was created by Shannon Carter during the Insight Data Science fellowship
-                        in the fall of 2019. The goal is to provide a means for casual activists to search the entire record of City Council meetings.
-                        The app uses word embeddings to allow users to search all public comments from the last 4 years of City Council meetings
-                        with a single query</p>
+                        in the fall of 2019. The goal is to provide a means for casual activists to quickly search City Council meeting documentation for a particular topic of interest.
+                        The app uses word embeddings to match user input to all public comments made during the last four years of City Council meetings</p>
                 </div>
                 <div class="col-sm-4 offset-md-1 py-4">
                     <h4 class="text-white">Contact</h4>
@@ -126,8 +128,8 @@ tr:hover {
          </tr>
          {% for i, row in data2.iterrows() %}
          <tr>
-           <th><a href = "{{row['Meeting Website']}}">{{row['Meeting Date']}}</a></th>
-           <th>{{row['Public Speaker Comment']}}</th>
+           <td width = "15%"><a href = "{{row['Meeting Website']}}">{{row['Meeting Date']}}</a></td>
+           <td width = "85%">{{row['Public Speaker Comment']}}</td>
          </tr>
          {% endfor %}
 
@@ -144,12 +146,12 @@ tr:hover {
 </div>
 
 
-<!-- <footer class="text-muted">
+<footer class="text-muted">
     <div class="container">
         <p class="float-right">
             <a href="#">Back to top</a>
         </p>
-        <p> &copy; IdeaVetter 2019</p>
+        <p> &copy; Activist's Digest</p>
     </div>
 </footer> -->
 
