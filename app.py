@@ -55,6 +55,7 @@ def activistsdigest():
         data1 = data.sort_values(by=['cosine_similarity'], ascending = False)
         data2 = data1.drop('vector_average', 1)
         data2 = data2.drop('cosine_similarity', 1)
+        data2 = data2.head(15)
         data2['date'] = pd.to_datetime(data2['date'], format = '%Y-%m-%d')
         data2["year"] = data2['date'].apply(lambda x: x.strftime("%Y"))
         data2["url_date"] = data2['date'].apply(lambda x: x.strftime("%Y%m%d"))
@@ -65,13 +66,14 @@ def activistsdigest():
         data2 = data2.drop('year', 1)
         data2 = data2.drop('url_date', 1)
 
+
         # return df for top 10 rows
         #results = data1.head(10)
-        html_table = data2.head(15).to_html(index = False)
+        #html_table = data2.head(15).to_html(index = False)
         #results = data1.head(10).to_html()
 
     # return print(results)
-    return render_template("output.html", data2=data2.head(15), text=text)
+    return render_template("output.html", data2=data2, text=text)
         # if form.validate():
         #     flash(idea)
         # else:
