@@ -23,24 +23,30 @@
 <head>
 <style>
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-  }
-
-  td, th {
-    border: 1px solid #616161;
-    text-align: left;
-    padding: 8px;
-  }
-
-  tr:nth-child(even) {
-    background-color: #dddddd;
+  font-family: arial, sans-serif;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #C8C8C8;
+  border-collapse: collapse;
+  text-align:left;
+  padding: 10px;
+  margin-bottom: 40px;
+  font-size: 0.9em;
 }
 
 th {
-    background-color: #4c8fa6;
-    color: white;
+  background-color: #4c8fa6;
+  color: white;
+}
+
+td, th {
+  border: 1px solid #616161;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 tr:hover {
@@ -114,7 +120,7 @@ tr:hover {
    <br>
 
 	<h3 align="center"> Here are some Public Speaker Comments related to {{text}} </h3>
-  <h5 align="center"> Click the meeting date to navigate to see full meeting documentation, including video and transcript </h5> <br>
+  <h5 align="center"> Follow the url under "Meeting Website" to see full meeting documentation, including video and transcript </h5> <br>
 
    <!-- 	MY TABLE -->
    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}"> -->
@@ -122,22 +128,18 @@ tr:hover {
    <div class="container-fluid" align="center">
      <div class="col-md-10">
        <table class="table">
-         <col width="20">
-         <col width="200">
-         <tr>
-           <th>Meeting Date</th>
-           <th>Public Speaker Comment</th>
-         </tr>
-         {% for i, row in data2.iterrows() %}
-         <tr>
-           <th><a href = "{{row['Meeting Website']}}">{{row['Meeting Date']}}</a></th>
-           <th>{{row['Public Speaker Comment']}}</th>
-         </tr>
-         {% endfor %}
+         <col width="130">
+         <col width="80">
+         <col width="80">
 
+         <thead class="thead-light">
 
-     	 </table>
+         </thead>
+         <tbody>
+           {{html_table|safe}}
 
+         </tbody>
+     	</table>
      </div>
      </div>
 

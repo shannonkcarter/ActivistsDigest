@@ -13,6 +13,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 
 
 app = Flask(__name__)
+data, emb_model = st.load_data()
 
 # Home Page
 @app.route('/', methods=['GET', 'POST'])
@@ -21,6 +22,8 @@ def index():
 
 @app.route('/pitchidea', methods=['POST'])
 def activistsdigest():
+    global data
+    global emb_model
     if request.method == 'POST':
         for aKey in request.form:
             if aKey == 'pitch':
@@ -29,7 +32,7 @@ def activistsdigest():
         print(request.form['pitch'])
         print(text)
 
-        data, emb_model = st.load_data()
+
     # accept user input
         # text = input("Pitch your idea here: ")
 
@@ -53,15 +56,22 @@ def activistsdigest():
         data2 = data1.drop('vector_average', 1)
         data2 = data2.drop('cosine_similarity', 1)
         data2['date'] = pd.to_datetime(data2['date'], format = '%Y-%m-%d')
+        data2["year"] = data2['date'].apply(lambda x: x.strftime("%Y"))
+        data2["url_date"] = data2['date'].apply(lambda x: x.strftime("%Y%m%d"))
         data2["date"] = data2['date'].apply(lambda x: x.strftime('%B %d, %Y'))
+        data2["Meeting Website"] = "https://www.austintexas.gov/department/city-council/" + data2["year"].map(str) + "/" + data2["url_date"] + "-reg.htm"
         data2 = data2.rename(columns={"text": "Public Speaker Comment", "date": "Meeting Date"})
+        #data2 = data2.drop('date', 1)
+        data2 = data2.drop('year', 1)
+        data2 = data2.drop('url_date', 1)
+
         # return df for top 10 rows
         #results = data1.head(10)
         html_table = data2.head(15).to_html(index = False)
         #results = data1.head(10).to_html()
 
     # return print(results)
-    return render_template("output.html", html_table=html_table, text=text)
+    return render_template("output.html", data2=data2.head(15), text=text)
         # if form.validate():
         #     flash(idea)
         # else:
