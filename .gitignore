@@ -1,4 +1,4 @@
-Austin_Transcripts
+Austin_Transcripts # raw data
 .DS_Store
-.bin
-.csv
+.csv       # processed data files
+.bin       # big word2vec model
