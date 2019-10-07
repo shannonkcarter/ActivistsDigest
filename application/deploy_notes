@@ -1,0 +1,19 @@
+To run app via the server/on the world wide web
+
+1. Open terminal
+2. cd to folder containing AWS keypair (.pem file). Currently in kathrynkundrod/Shannon/AWScredentials
+3. ssh into the remote server with (18.xxx.xxx.xx is elastic IP):
+
+	$ ssh -i shannon-carter-IAM-keypair.pem ubuntu@18.xxx.xxx.xx
+
+4. cd to venv/bin
+5. > source activate
+6. Make sure you’re in the virtual environment
+7. cd back to folder “application”
+8. > unicorn flask example:app
+
+
+Notes:
+- to edit app, change files locally, in the folder Shannon/application. Test that the changes worked by running the app locally. Then push to server via FileZilla. Then do 1-7 above, run > pkill gunicorn > gunicorn flaskexample:app
+
+
